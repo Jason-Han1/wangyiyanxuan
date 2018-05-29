@@ -1,0 +1,55 @@
+@rem: 750/10rem;
+// 一像素下边框
+.bottom-border-1px{
+  position:relative;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #666;
+    transform: scaleY(0.5);
+  }
+}
+// 一像素上边框
+.top-border-1px {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #666666;
+  }
+}
+//根据像素比缩放1px像素边框
+@media only screen and (-webkit-device-pixel-ratio:2 ) {
+  .border-1px {
+    &::before {
+      transform: scaleY(.5);
+    }
+  }
+}
+@media only screen and (-webkit-device-pixel-ratio:3 ) {
+  .border-1px {
+    &::before {
+      transform: scaleY(.333333);
+    }
+  }
+}
+
+//清除浮动
+.clearFix{
+  *zoom: 1;
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

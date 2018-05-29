@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no">
+  <link rel="shortcut icon" href="/static/images/xuan.png" type="image/png" />
+
+  <title>网易严选 - 以严谨的态度，为中国消费者甄选天下优品</title>
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_683704_ofdni70kyemqjjor.css">
+  <link rel="stylesheet" href="/static/css/reset.css">
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+<script>
+  if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body);
+    }, false);
+  }
+  if(!window.Promise) {
+    document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+  }
+
+
+  ;(function () {
+    let styleNode = document.createElement('style')
+    console.log(document.documentElement.clientWidth)
+    let w = document.documentElement.clientWidth / 10;
+    styleNode.innerHTML = "html{font-size: " + w +"px!important}"
+    document.head.appendChild(styleNode)
+  })();
+
+</script>
+</html>
