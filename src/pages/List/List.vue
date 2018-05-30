@@ -26,21 +26,6 @@
     name: "List",
     data(){
       return {
-        /*items: [
-          { title: '推荐专区', to: '/list/tuijian'},
-          { title: '夏季专区', to: '/list/xiaji'},
-          { title: '个性专区', to: '/list/gexing'},
-          { title: '居家', to: '/list/jujia'},
-          { title: '配件', to: '/list/peijian'},
-          { title: '服装', to: '/list/fuzhuang'},
-          { title: '电器', to: '/list/dianqi'},
-          { title: '洗护', to: '/list/xihu'},
-          { title: '饮食', to: '/list/yinshi'},
-          { title: '餐厨', to: '/list/canchu'},
-          { title: '婴童', to: '/list/yingtong'},
-          { title: '文体', to: '/list/wenti'},
-          { title: '特色区', to: '/list/tesequ'},
-        ]*/
         index: 3
       }
     },
