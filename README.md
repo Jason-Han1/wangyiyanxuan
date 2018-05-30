@@ -1,30 +1,20 @@
 # wangyiyanxuan
+# Swiper两翼留白效果实现
 
-> A Vue.js project
+    new Swiper('.swiper-container', {
+                loop: true,
+                spaceBetween: 30,
+                slidesPerView: 1.15,
+                centeredSlides: true,
+                onInit: function (swiper) {
+                  swiper.slides[1].className = 'swiper-slide swiper-slide-active'
+                },
+                autoplay: {
+                  autoplay:true,
+                  delay: 3000
+                },
+              })
 
-## Build Setup
+# @ipmort引入的混合如果页面上有对应的类名可以不用引用,但是如果页面没有对应的类名就需要在你的类里引用混合有参数传参数
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

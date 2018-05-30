@@ -6,3 +6,7 @@ export const reqData = () => ajax('/data')
 export const reqBanner = () => ajax('/banner')
 //获取home对象
 export const reqHome = () => ajax('/home')
+//获取home对象
+export const reqDetail = () => ajax('/detail')
+//获取home对象
+export const reqNav = () => ajax('/nav')

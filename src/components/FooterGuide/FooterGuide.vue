@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-container">
     <div class="navbar">
-      <div :class="{active: item.to === $route.path}" class="navbar-item" v-for="(item,index) in items" :key="index" @click="$router.replace(item.to)">
+      <div :class="{active: item.to === $route.path || $route.meta.highlight}" class="navbar-item" v-for="(item,index) in items" :key="index" @click="$router.replace(item.to)">
         <span class="iconfont" :class="item.class"></span>
         <span class="title">{{item.title}}</span>
       </div>
@@ -22,6 +22,9 @@
         ]
       }
     },
+    mounted(){
+
+    },
     computed: {
 
     },
@@ -34,6 +37,7 @@
 <style lang="less">
   @import '../../common/stylus/mixins';
   .navbar-container {
+    border-top: 1px solid #999;
     position: fixed;
     bottom: 0;
     z-index: 99;

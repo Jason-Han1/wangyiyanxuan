@@ -111,7 +111,7 @@
       </div>
     </div>
     <goTop/>
-    <GoodThing :cateList="home.cateList"/>
+    <GoodThing :cateList="home.cateList" />
     <HomeFooter/>
   </div>
 </template>
@@ -131,7 +131,6 @@
       }
     },
     mounted(){
-      console.log(this.home.policyDescList)
       this.$store.dispatch('getData',()=> {
         this.$nextTick(() => { // 列表数据更新显示后执行
           this._initScroll()

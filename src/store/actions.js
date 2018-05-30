@@ -2,12 +2,16 @@
 import {
   reqData,
   reqBanner,
-  reqHome
+  reqHome,
+  reqDetail,
+  reqNav
 } from '../api'
 import {
   Data,
   Banner,
-  Home
+  Home,
+  Detail,
+  Nav
 } from './mutation-types'
 export default {
   //获取首页data信息
@@ -26,6 +30,18 @@ export default {
   async getHome({commit},cb){
     const result = await reqHome()
     commit(Home,{result})
+    cb && cb()
+  },
+  //获取detail页面
+  async getDetail({commit},cb){
+    const result = await reqDetail()
+    commit(Detail,{result})
+    cb && cb()
+  },
+  //获取nav
+  async getNav({commit},cb){
+    const result = await reqNav()
+    commit(Nav,{result})
     cb && cb()
   }
 }

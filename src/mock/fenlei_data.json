@@ -1,5 +1,6 @@
 {
-  "categoryL1List": [{
+  "categoryL1List": [
+    {
     "bannerUrl": "http://yanxuan.nosdn.127.net/cb225335d4a438564040f00b448e8db8.png",
     "extra": {
       "adminResource": {
@@ -66,7 +67,8 @@
       "type": 3,
       "wapBannerUrl": "http://yanxuan.nosdn.127.net/203f00eee943cbd3e46471d097a5ab79.png",
       "wapExpandPicTargetUrl": ""
-    }, {
+    },
+      {
       "bannerUrl": "http://yanxuan.nosdn.127.net/7e71b041939a8785c038484dba48a500.png",
       "extra": null,
       "frontDesc": "",
@@ -730,4 +732,4 @@
     "wapBannerUrl": "http://yanxuan.nosdn.127.net/c1adbc77984d504e48329dcc5f742905.jpg",
     "wapExpandPicTargetUrl": "https://m.you.163.com/item/saleRank?categoryId=1005000"
   }
-} 
+}

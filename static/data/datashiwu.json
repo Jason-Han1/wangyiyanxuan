@@ -1,5 +1,6 @@
 {
-  "banner": [{
+  "banner": [
+    {
     "avatar": "",
     "color": "",
     "commentSwitch": false,
@@ -25,7 +26,8 @@
     "topicTemplateId": 0,
     "type": -1,
     "typeName": ""
-  }, {
+  },
+    {
     "avatar": "",
     "color": "",
     "commentSwitch": false,
@@ -51,7 +53,8 @@
     "topicTemplateId": 0,
     "type": -1,
     "typeName": ""
-  }, {
+  },
+    {
     "avatar": "",
     "color": "",
     "commentSwitch": false,
@@ -77,7 +80,8 @@
     "topicTemplateId": 0,
     "type": -1,
     "typeName": ""
-  }, {
+  },
+    {
     "avatar": "",
     "color": "",
     "commentSwitch": false,
@@ -103,7 +107,8 @@
     "topicTemplateId": 0,
     "type": -1,
     "typeName": ""
-  }],
+  }
+  ],
   "column": [{
     "articleCount": "316篇文章",
     "linkUrl": "",

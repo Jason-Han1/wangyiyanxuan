@@ -3,13 +3,13 @@
     <div class="m-topBar">
       <div class="bd">
         <div class="row">
-          <i class="shouye" ></i>
+          <i class="shouye" @click="$router.replace('/home')"></i>
           <i class="logo"></i>
           <div class="right">
-            <div class="search">
+            <div class="search" @click="$router.replace('/home')">
               <i class="search1"></i>
             </div>
-            <div class="cart">
+            <div class="cart" @click="$router.replace('/Shopcart')">
               <i class="cart1"></i>
             </div>
           </div>
@@ -28,7 +28,9 @@
 <style scoped lang="less" rel="stylesheet/less">
   @import '../../common/stylus/mixins';
   .m-topBar{
-    position: relative;
+    position: fixed;
+    top: 0;
+    z-index: 99;
     .bd{
       height: 1.16*75/@rem;
       background-color: #fafafa;
