@@ -36,9 +36,12 @@
 </script>
 <style scoped lang="less" rel="stylesheet/less">
   @import '../../common/stylus/mixins';
+  html,body{
+    height: 100%;
+    overflow: hidden;
+  }
   .loginTypesWrap {
-    margin-top: 88px;
-    height: 624px;
+    padding-top: 88px;
     .cont {
       position: relative;
       height: 100%;
@@ -56,6 +59,7 @@
         margin-bottom: .42667*75/@rem;
         padding: 0 .53333*75/@rem;
         .loginPhone {
+          background-position: 0 -51px;
           margin-right: .21333*75/@rem;
           position: relative;
           top: -.02667*75/@rem;

@@ -1,5 +1,6 @@
 <template>
   <div id="scrollWrap">
+    <Masklayer/>
     <div class="homeContainer">
       <div class="headerWrap">
         <div class="homeHd">
@@ -13,21 +14,21 @@
         </div>
         <div class="hdScorllX" >
           <div class="hdScorllItem" ref="hdScorllItem">
-            <span class="active" v-for="(item,index) in data" :key="index" ref="hdScorll">{{item.name}}</span>
+            <span :class="{active:index === activeIndex }" v-for="(item,index) in data" :key="index" ref="hdScorll" @click="active(index)">{{item.name}}</span>
           </div>
         </div>
       </div>
       <div class="swiper-container" v-if="banner.length>0">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
-            <img :src="item.picUrl">
+            <img v-lazy="item.picUrl" />
           </div>
         </div>
       </div>
       <div class="g-grow">
         <div class="item" v-for="(item,index) in home.policyDescList">
           <!--<i class="iconfont icon-anonymous-iconfont"></i>-->
-          <img :src="item.icon">
+          <img v-lazy="item.icon">
           <span>{{item.desc}}</span>
         </div>
       </div>
@@ -74,7 +75,7 @@
           <div class="list">
             <div class="goodGrid-item" v-for="(item,index) in home.newItemList" :key="index">
               <div class="wraper">
-                <img :src="item.primaryPicUrl" alt="">
+                <img v-lazy="item.primaryPicUrl" alt="">
               </div>
               <div class="title">
                 新品
@@ -100,7 +101,7 @@
       <div class="imgWrap">
         <div class="img-scroll">
           <div class="imgItem" v-for="(item,index) in home.topicList" :key="index">
-            <img :src="item.itemPicUrl" alt="">
+            <img v-lazy="item.itemPicUrl" alt="">
             <div class="line1">
               <h4>{{item.title}}</h4>
               <span>{{item.priceInfo}}元起</span>
@@ -111,7 +112,7 @@
       </div>
     </div>
     <goTop/>
-    <GoodThing :cateList="home.cateList" />
+    <GoodThing :cateList="home.cateList"/>
     <HomeFooter/>
   </div>
 </template>
@@ -123,14 +124,27 @@
   import goTop from '../../components/goTop/goTop'
   import GoodThing from '../../components/GoodThing/GoodThing'
   import HomeFooter from '../../components/HomeFooter/HomeFooter'
+  import { Indicator } from 'mint-ui';
+  import Masklayer from '../../components/Masklayer/Masklayer'
   export default {
     name: "Home",
     data(){
       return{
-        isSelected: false
+        isSelected: false,
+        activeIndex: 0,
+        isMasklayer: false
       }
     },
     mounted(){
+/*      setTimeout(() => {
+        this.isMasklayer = true
+      },300)*/
+
+      if(!this.data.length || this.banner.length){
+        Indicator.open({
+          spinnerType: 'fading-circle'
+        });
+      }
       this.$store.dispatch('getData',()=> {
         this.$nextTick(() => { // 列表数据更新显示后执行
           this._initScroll()
@@ -152,12 +166,9 @@
 
     },
     methods: {
-      /*      hdScorll(index){
-              console.log(this.$refs.hdScorll)
-              if(this.$refs.hdScorll[index].innerHTML === this.data[index].name){
-                this.isSelected = true
-              }
-            }*/
+      active(indexActive){
+        this.activeIndex = indexActive
+      },
       // 初始化滚动
       _initScroll() {
         new BScroll('.hdScorllX', {
@@ -185,17 +196,17 @@
               delay: 3000
             },
           })
-          /*new BScroll('#scrollWrap', {
-            click: true,
-            scrollY: true
-          })*/
+          if(this.banner.length || this.banner.length){
+            Indicator.close();
+          }
         })
       }
     },
     components:{
       goTop,
       GoodThing,
-      HomeFooter
+      HomeFooter,
+      Masklayer
     }
   }
 </script>
@@ -256,12 +267,14 @@
       overflow: hidden;
       background: #ffffff;
       display: flex;
+      padding: 0 0 12px 0;
       .hdScorllItem{
+        padding: 0 0 12px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
         span{
-          width: 60px;
+          width: 70px;
           text-align: center;
           flex-shrink:0;
           flex-wrap:nowrap;
@@ -296,7 +309,6 @@
       .item{
         width: 33%;
         height: .96*75/@rem;
-        //background: deeppink;
         margin-left: 15/@rem;
         img{
           width: .42667*75/@rem;
@@ -478,7 +490,6 @@
     }
     .imgWrap{
       display: flex;
-      //margin-bottom: .3*75/@rem;
       .img-scroll{
         margin-left: .3*75/@rem;
         display: flex;
@@ -527,8 +538,6 @@
           }
         }
       }
-
-
     }
   }
 </style>

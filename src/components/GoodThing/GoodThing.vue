@@ -3,7 +3,7 @@
     <div class="m-indexFloor" v-for="(item, index) in cateList" :key="index">
     <div class="m-titleGoodGrid">
       <h3 class="title">{{item.name}}好物</h3>
-      <div class="m-goodGrid" >
+      <div class="m-goodGrid">
         <div class="wraper" v-for="(itemGoodGrid, indexGoodGrid) in item.itemList" :key="indexGoodGrid">
           <img :src="itemGoodGrid.listPicUrl" alt="">
           <div class="desc">{{itemGoodGrid.simpleDesc}}</div>
@@ -23,8 +23,10 @@
     },
     data(){
       return{
-
       }
+    },
+    methods:{
+
     }
   }
 </script>

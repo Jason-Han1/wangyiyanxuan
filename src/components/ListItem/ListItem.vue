@@ -2,7 +2,7 @@
   <!--<div v-if="nav.categoryL1List" v-for="(itemList, indexList)nav.categoryL1List" :key="indexList">-->
     <div class="m-subCateList" v-if="nav.categoryL1List">
       <div class="banner">
-        <img :src="nav.categoryL1List[index].bannerUrl">
+        <img v-lazy="nav.categoryL1List[index].bannerUrl">
       </div>
       <div class="cateList">
         <div class="hd">
@@ -14,7 +14,7 @@
         <div class="list">
           <div class="cateItem" v-for="(itemCate,indexCate) in nav.categoryL1List[index].subCateList" :key="indexCate">
             <div class="cateImgWrapper" >
-              <img :src="itemCate.wapBannerUrl" alt="">
+              <img v-lazy="itemCate.wapBannerUrl" alt="">
               <div class="name">{{itemCate.name}}</div>
             </div>
           </div>

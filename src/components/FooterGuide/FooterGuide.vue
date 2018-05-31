@@ -38,13 +38,14 @@
   @import '../../common/stylus/mixins';
   .navbar-container {
     border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
     position: fixed;
     bottom: 0;
     z-index: 99;
     background-color: #f5f5f5;
-    overflow: hidden;
     height: 98/@rem;
     width: 100%;
+
   }
   .navbar{
     width: 100%;
