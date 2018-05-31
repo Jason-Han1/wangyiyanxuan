@@ -1,7 +1,7 @@
 <template>
-  <div v-if="isMask">
-    <transition name="fade">
-      <div class="m-newWapUserGiftModal">
+  <div >
+    <transition name="fade" >
+      <div class="m-newWapUserGiftModal" v-if="isMask">
         <div class="mask"></div>
         <i class="close" @click="isMask = false"></i>
         <div class="wrap">

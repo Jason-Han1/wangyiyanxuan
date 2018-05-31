@@ -11,9 +11,17 @@ import List from '../pages/List/List.vue'
 import Personal from '../pages/Personal/Personal.vue'
 import Shopcart from '../pages/Shopcart/Shopcart.vue'*/
 import Interlayer from '../pages/Interlayer/Interlayer.vue'
+//import Login from '../pages/Login/Login.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
+/*    {
+      path: '/login',
+      component: Login,
+      meta:{
+        isInterlayer: false
+      }
+    },*/
     {
       path: '/interlayer',
       component: Interlayer,
