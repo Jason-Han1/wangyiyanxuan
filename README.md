@@ -32,9 +32,11 @@
 # 打包文件分析 npm run build --report
 
 # 缓存路由对象
-  <keep-alive>
-    <router-view />
-  </keep-alive>
+
+   `<keep-alive>
+      <router-view />
+    </keep-alive>
+  `
 
 
 
