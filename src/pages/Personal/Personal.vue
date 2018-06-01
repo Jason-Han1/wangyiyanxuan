@@ -7,13 +7,13 @@
           <img src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
         </div>
         <div class="btnWrap">
-          <div class="button-block">
+          <div class="button-block" @click="goLogoin(true)">
             <i class="loginPhone"></i>
-            <span>手机号码登录</span>
+            <span>帐号登录</span>
           </div>
-          <div class="button-ghostRed">
+          <div class="button-ghostRed" @click="goLogoin(false)">
             <i class="loginMail"></i>
-            <span>邮箱帐号登录</span>
+            <span>短信登录</span>
           </div>
           <div class="btn">
             <span>手机号快捷注册</span>
@@ -25,10 +25,30 @@
   </div>
 </template>
 <script>
+  import Vue from 'vue'
   import ShiwuHeader from '../../components/ShiwuHeader/ShiwuHeader'
-
+  import {mapState} from 'vuex'
   export default {
     name: "Personal",
+    data(){
+      return{
+        loginWay: null
+      }
+    },
+    mounted (){
+
+    },
+    computed:{
+
+    },
+    methods:{
+      goLogoin(loginWay1){
+        this.loginWay = loginWay1
+        //Vue.set(this.loginWay,'loginWay')
+        this.$router.replace('/login')
+        this.$store.dispatch('setLoginWay',this.loginWay)
+      }
+    },
     components: {
       ShiwuHeader
     }
@@ -59,7 +79,7 @@
         margin-bottom: .42667*75/@rem;
         padding: 0 .53333*75/@rem;
         .loginPhone {
-          background-position: 0 -51px;
+          background-position: 0 -58px;
           margin-right: .21333*75/@rem;
           position: relative;
           top: -.02667*75/@rem;

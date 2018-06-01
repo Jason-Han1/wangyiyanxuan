@@ -4,7 +4,8 @@ import {
   Banner,
   Home,
   Detail,
-  Nav
+  Nav,
+  LoginWay
 } from './mutation-types'
 export default {
   [Data](state,{data}) {
@@ -24,5 +25,8 @@ export default {
   [Nav](state,{result}) {
     const {nav} = result
     state.nav = nav
+  },
+  [LoginWay](state,loginWay) {
+    state.loginWay = loginWay
   },
 }

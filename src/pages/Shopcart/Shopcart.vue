@@ -24,7 +24,9 @@
           <div class="txt">
             <div class="noCart-login">
               <div class="noCart-title">去添加点什么吧</div>
-              <div class="noCart-btn" @click="$router.replace('/login')">登录</div>
+              <router-link to="/personal">
+                <div class="noCart-btn">登录</div>
+              </router-link>
             </div>
           </div>
         </div>

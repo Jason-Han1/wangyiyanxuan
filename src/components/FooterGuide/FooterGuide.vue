@@ -15,7 +15,7 @@
       return {
         items: [
           { title: '首页', to: '/home', class:'icon-shouye' },
-          { title: '专题', to: '/detail' , class:'icon-fangkuaidagou-weixuanzhong'},
+          { title: '识物', to: '/detail' , class:'icon-fangkuaidagou-weixuanzhong'},
           { title: '分类', to: '/List' , class:'icon-chouti'},
           { title: '购物车', to: '/Shopcart', class:'icon-gouwuche'},
           { title: '个人', to: '/Personal', class:'icon-renwu' }

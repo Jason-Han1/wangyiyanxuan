@@ -2,15 +2,17 @@
   <section class="loginContainer">
     <div class="loginInner">
       <div class="login_header">
-        <h2 class="login_logo">网易严选</h2>
+        <div data-v-6c60b3a4="" class="logoWrap">
+          <img data-v-6c60b3a4="" src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
+        </div>
         <div class="login_header_title">
-          <a href="javascript:;" :class="{on: loginWay}" @click="loginWay=true">短信登录</a>
-          <a href="javascript:;" :class="{on: !loginWay}" @click="loginWay=false">密码登录</a>
+          <a href="javascript:;" class="on" v-show="!loginWay">短信登录</a>
+          <a href="javascript:;" class="on" v-show="loginWay">账号登录</a>
         </div>
       </div>
       <div class="login_content">
         <form @submit.prevent="login">
-          <div :class="{on: loginWay}">
+          <div class="on" v-show="!loginWay">
             <section class="login_message">
               <input type="text" maxlength="11" placeholder="手机号" v-model="phone">
             </section>
@@ -22,7 +24,7 @@
               <a href="javascript:;">《用户服务协议》</a>
             </section>
           </div>
-          <div :class="{on: !loginWay}">
+          <div class="on" v-show="loginWay">
             <section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="手机/邮箱/用户名" v-model="name">
@@ -37,8 +39,8 @@
               </section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
-                <img class="get_verification" src="http://localhost:4000/captcha" alt="captcha"
-                     @click="getCaptcha" ref="captcha" style="width: 300px">
+                <img class="get_verification" src="../../common/img/captcha.svg" alt="captcha"
+                      ref="captcha" style="width: 300px">
               </section>
             </section>
           </div>
@@ -56,12 +58,13 @@
 </template>
 
 <script>
-  import {accountLogin, reqCaptcha ,mobileCode, phoneLogin} from '../../api'
+  import {mapState} from 'vuex'
+  //import {accountLogin, reqCaptcha ,mobileCode, phoneLogin} from '../../api'
   import AlertTip from '../../components/AlertTip/AlertTip'
     export default {
       data () {
         return {
-          loginWay: false, // true代表短信登陆, false代表密码
+          //loginWay: false, // true代表短信登陆, false代表密码
           computeTime: 0, // 计时的时间
           showPwd: false, // 是否显示密码
           phone: '', // 手机号
@@ -75,51 +78,23 @@
       },
 
       computed: {
+        ...mapState(['loginWay']),
         rightPhone () {
           return /^1\d{10}$/.test(this.phone)
         }
       },
 
       methods: {
-        // 异步获取短信验证码
-        async getCode () {
-          // 如果当前没有计时
-          if(!this.computeTime) {
-            // 启动倒计时
-            this.computeTime = 30
-            this.intervalId = setInterval(() => {
-              this.computeTime--
-              if(this.computeTime<=0) {
-                // 停止计时
-                clearInterval(this.intervalId)
-              }
-            }, 1000)
-
-            // 发送ajax请求(向指定手机号发送验证码短信)
-            const result = await mobileCode(this.phone)
-            if(result.code===1) {
-              // 显示提示
-              this.showAlert(result.msg)
-              // 停止计时
-              if(this.computeTime) {
-                this.computeTime = 0
-                clearInterval(this.intervalId)
-                this.intervalId = undefined
-              }
-            }
-          }
-        },
-
         showAlert(alertText) {
           this.alertShow = true
           this.alertText = alertText
         },
-        // 异步登陆
-        async login () {
+        // 登陆
+       login () {
           let result
           // 前台表单验证
-          if(this.loginWay) {  // 短信登陆
-            const {rightPhone, phone, code} = this
+          if(!this.loginWay) {  // 短信登陆
+            const {code} = this
             if(!this.rightPhone) {
               // 手机号不正确
               this.showAlert('手机号不正确')
@@ -129,11 +104,8 @@
               this.showAlert('验证必须是6位数字')
               return
             }
-            // 发送ajax请求短信登陆
-            result = await phoneLogin(phone, code)
-
-          } else {// 密码登陆
-            const {name, pwd, captcha} = this
+          }
+          else {// 密码登陆
             if(!this.name) {
               // 用户名必须指定
               this.showAlert('用户名必须指定')
@@ -147,42 +119,20 @@
               this.showAlert('验证码必须指定')
               return
             }
-            // 发送ajax请求密码登陆
-            result = await accountLogin({name, pwd, captcha})
           }
-          // 停止计时
-          if(this.computeTime) {
-            this.computeTime = 0
-            clearInterval(this.intervalId)
-            this.intervalId = undefined
-          }
-          // 根据结果数据处理
-          if(result.code===0) {
-            const user = result.data
-            // 将user保存到vuex的state
-            this.$store.dispatch('recordUser', user)
-            // 去个人中心界面
-            this.$router.replace('/profile')
-          } else {
-            // 显示新的图片验证码
-            this.getCaptcha()
-            // 显示警告提示
-            const msg = result.msg
-            this.showAlert(msg)
-          }
+         this.showAlert('登陆成功,即将跳转到首页')
+         setTimeout(() => {
+           this.$router.replace('/home')
+           this.closeTip ()
+         },1000)
+
         },
         // 关闭警告框
         closeTip () {
           this.alertShow = false
           this.alertText = ''
         },
-        // 获取一个新的图片验证码
-        getCaptcha () {
-          // 每次指定的src要不一样
-          this.$refs.captcha.src = 'http://localhost:4000/captcha?time='+Date.now()
-        }
       },
-
       components: {
         AlertTip
       }
@@ -190,6 +140,23 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  //清除Chrome浏览器记住密码下 user agent stylesheet 给input设置的屎黄色背景
+  input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 100px white inset;
+    -webkit-text-fill-color: #666;
+  }
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow:0 0 0 100px white inset;
+    -webkit-text-fill-color: #666;
+  }
+  .logoWrap
+    text-align: center;
+    padding-top: 1.13333rem;
+    padding-bottom: .13333rem;
+    img
+      width: 3.57333rem;
+      height: 1.2rem;
+
   .loginContainer
     width 100%
     height 100%
@@ -217,7 +184,7 @@
             &.on
               color #b4282d
               font-weight 700
-              border-bottom 2px solid #b4282d
+              //border-bottom 2px solid #b4282d
       .login_content
         margin-top 30px
         > form
@@ -251,17 +218,18 @@
               margin-top 27px
               .get_verification
                 position absolute
-                top 39%
-                right 83px
+                top 51%
+                right 60px
                 transform translateY(-50%)
                 border 0
                 color #ccc
                 font-size .4rem
-                background transparent
+
                 &img
                   width 100px
-                &input
+                &>input
                   margin-top 50px
+                  background #ffffff!important
                 &.right_phone
                   color: black
             .login_verification
@@ -309,7 +277,7 @@
             .login_hint
               margin-top 12px
               color #999
-              font-size .4rem
+              font-size .3rem
               line-height .55rem
               > a
                 color #b4282d

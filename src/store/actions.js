@@ -11,7 +11,8 @@ import {
   Banner,
   Home,
   Detail,
-  Nav
+  Nav,
+  LoginWay
 } from './mutation-types'
 export default {
   //获取首页data信息
@@ -43,5 +44,9 @@ export default {
     const result = await reqNav()
     commit(Nav,{result})
     cb && cb()
+  },
+  //设置loginWay
+  setLoginWay({commit},loginWay){
+    commit(LoginWay,loginWay)
   }
 }

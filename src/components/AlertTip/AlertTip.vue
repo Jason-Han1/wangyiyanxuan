@@ -46,10 +46,11 @@
     background: rgba(0, 0, 0, .5)
     .tip_text_container
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 38%;
+      left: 20%;
       transform translate3d(-50% -50%)
       width: 60%
+      height 20%
       animation: tipMove .4s;
       background-color: rgba(255, 255, 255, 1);
       border: 1px;
@@ -60,8 +61,10 @@
       flex-direction: column;
       border-radius: 5px
       .tip_icon
-        width: 55px
-        height: 55px
+        position absolute
+        top 20px
+        width: 100px
+        height: 100px
         border: 2px solid #f8cb86;
         border-radius: 50%;
         font-size 20px
@@ -81,20 +84,22 @@
           margin-top: 2px
           background-color #f8cb86
       .tip_text
-        font-size 14px
+        font-size .4rem
         color #333
         line-height 20px
         text-align center
         margin-top 10px
         padding 0 5px
       .confrim
-        font-size 18px
+        position absolute
+        bottom 0
+        font-size .4rem
         font-weight bold
-        margin-top 10px
         background-color #b4282d
         width 100%
+        height 28%
         text-align center
-        line-height 35px
+        line-height .9rem
         border 1px
         color #fff
         border-bottom-left-radius 5px

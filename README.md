@@ -50,4 +50,27 @@
   `
 ## 书写vue transition组件时 v-if 要放在<transition>里面
 
+## 清除Chrome浏览器记住密码下 user agent stylesheet 给input设置的屎黄色背景
+
+   input:-webkit-autofill {
+              -webkit-box-shadow:0 0 0 100px white inset;
+              -webkit-text-fill-color: #666;
+          }
+    input:-webkit-autofill:focus {
+        -webkit-box-shadow:0 0 0 100px white inset;
+        -webkit-text-fill-color: #666;
+    }
+
+## 设置浏览器图标
+
+  build -> webpack.dev.conf.js
+   new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'index.html',
+        inject: true,
+        favicon: './static/favicon.png'
+      }),
+
+  index.html
+  <link rel="shortcut icon" href="/static/favicon.png" type="image/png" />
 
