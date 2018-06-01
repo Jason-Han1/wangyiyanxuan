@@ -27,7 +27,7 @@
     data(){
       return {
         index: 3
-      }
+    }
     },
     computed:{
       ...mapState(['nav'])

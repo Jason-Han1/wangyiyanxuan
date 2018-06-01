@@ -1,4 +1,14 @@
-# wangyiyanxuan
+# 网易严选
+
+## 底部组件实现，以及是否需要显示（meta）
+
+## flex布局时如果父元素如果不能被子元素撑开，给父元素的父元素设置display：flex
+
+## 存在多层表达式时出现错误 xxx of ‘undefinde’解决方法v-if判断
+
+## better-scroll不能上下滑动
+
+## better-scroll/Swiper对象的两个创建时机
 
 ## Swiper两翼留白效果实现
 
@@ -38,6 +48,6 @@
       <router-view />
     </keep-alive>
   `
-
+## 书写vue transition组件时 v-if 要放在<transition>里面
 
 
